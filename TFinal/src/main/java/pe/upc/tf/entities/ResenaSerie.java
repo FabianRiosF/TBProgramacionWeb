@@ -24,7 +24,7 @@ public class ResenaSerie implements Serializable {
 	@NotEmpty(message = "Debe ingresar una resena*")
 	@Column(name = "textResenaSerie", length = 1000, nullable = false)
 	private String textResenaSerie;
-	
+	/*Ya que cada serie tendrá una reseña, es necesario crear una tabla especial de muchos a muchos en donde se encuentre la reseña, la serie, y el usuario*/
 	@ManyToOne
     @JoinColumn(name = "idSerie")
 	private Serie serie;
