@@ -25,5 +25,5 @@ public class ListaController implements Serializable{
     public void init() {
     	
     }
-   
+   /*prueba*/ 
 }
