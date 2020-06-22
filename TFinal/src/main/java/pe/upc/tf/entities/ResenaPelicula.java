@@ -24,7 +24,7 @@ public class ResenaPelicula implements Serializable {
 	@NotEmpty(message = "Debe ingresar una resena*")
 	@Column(name = "textResenaPelicula", length = 1000, nullable = false)
 	private String textResenaPelicula;
-	
+	/*Debido a que cada usuario podrá realizar reseñas de sus peliculas, es necesario hacer una tabla en la que se una el Usuariuo, la reseña y la película*/
 	@ManyToOne
     @JoinColumn(name = "idPelicula")
 	private Pelicula pelicula;
