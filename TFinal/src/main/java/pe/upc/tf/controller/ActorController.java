@@ -35,7 +35,7 @@ public class ActorController {
 	
 	@Value("${app.ruta.imagenes}")
 	private String ruta;
-	
+	//pruebita
 	@GetMapping("/actoresList")
 	public String lista(Model model) {
 		try {
