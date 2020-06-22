@@ -50,7 +50,7 @@ public class Pelicula implements Serializable {
 	
 	@Column(name = "imagePelicula", length = 300)
 	private String imagePelicula;
-	
+	/*Aquí se realiza la unión entre las tablas de acotres y películas, en un registro de muchos a muchos*/
 	@ManyToMany
 	@JoinTable (
 		name = "Actor_Pelicula",
