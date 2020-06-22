@@ -20,6 +20,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
+
 @Entity
 @Table(name="Lista")
 public class Lista implements Serializable {
