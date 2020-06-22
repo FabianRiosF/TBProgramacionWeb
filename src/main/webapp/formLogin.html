@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="favicon.ico">
+
+<title>App| Ingresar al Sistema</title>
+
+</head>
+
+<body>
+	<form th:action="@{/login}" method="post">
+		<label for="username" class="sr-only">Username</label>
+		<input	type="text" name="username" id="username" placeholder="Username" required autofocus>
+		<br> 
+	    <label for="password">Password</label> 
+	    <input type="password" name="password" id="password" placeholder="Password" required>
+	    <br>
+		<button type="submit">Aceptar</button>
+	</form>
+		Eres nuevo en pelis Rate? --- <a href="/register">Registrate aquí</a>
+</body>
+</html>

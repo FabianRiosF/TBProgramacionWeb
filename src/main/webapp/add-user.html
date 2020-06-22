@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add User</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+ <p th:text="${session.tienda}" th:unless="${session == null}">[...]</p>
+  <a th:href="@{/}">Regresar</a>
+  <br>
+ Add User Form
+ <br>
+	<form action="#" th:action="@{/adduserform}" th:object="${user}" method="post">
+		<label for="username">User</label> 
+		<input type="text" th:field="*{username}" name="username" id="username" placeholder="Username"> 
+		<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+		<br>	
+		<label for="nombre">Nombre</label> 
+		<input type="text" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Nombre">
+		<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+		<br>	
+		<label for="email">Email</label> 
+		<input type="text" th:field="*{email}" id="email" name="email" placeholder="Email">
+		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+		<br>	
+		<label for="password">Password</label> 
+		<input type="password" th:field="*{password}" id="password" name="password" placeholder="Password">
+		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+		<br>	
+		
+		<input type="submit" value="Add User">
+	</form>
+
+</body>
+</html>
