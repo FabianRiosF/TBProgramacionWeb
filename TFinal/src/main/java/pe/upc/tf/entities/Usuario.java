@@ -53,7 +53,7 @@ public class Usuario implements Serializable {
 	@NotEmpty(message = "Debe ingresar contrasena*")
 	@Column(name = "passwordUsuario", nullable = false, length = 25)
 	private String passwordUsuario;
-	
+	/*Debido a que el usuario creará muchas reseñas de películas y series, se debe hacer la unión con la tabla de películas y series, a través del OnetoMany*/
 	@OneToMany(mappedBy = "usuariopeli")
 	private List<ResenaPelicula> resenapelicula;
 	
