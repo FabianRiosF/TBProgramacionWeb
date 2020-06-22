@@ -111,7 +111,7 @@ public class ResenaPelicula implements Serializable {
 		return true;
 	}
 
-	
+	/*Esto es para que cada reseña de película creada tenga un codigo unico dentro del sistema y no se repita*/
 	
 }
 
