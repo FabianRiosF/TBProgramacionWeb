@@ -129,7 +129,7 @@ public class Actor implements Serializable {
 	}
 
 	
-	/*Ejemplo de commit*/
+	
 }
 
 
