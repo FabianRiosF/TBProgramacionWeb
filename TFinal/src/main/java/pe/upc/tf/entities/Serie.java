@@ -56,7 +56,7 @@ public class Serie implements Serializable {
 		joinColumns = @JoinColumn(name = "idSerie", nullable = false),
 		inverseJoinColumns = @JoinColumn(name = "idActor" , nullable = false))
 	private List<Actor> Actores;
-	
+	/*Aquí es en donde se crea el listado de serie que cada usuario tendrá cada vez que agregre una serie a su lista*/
 	@ManyToMany (mappedBy = "Lista_Serie")
 	private List<Lista> Listas;
 	
