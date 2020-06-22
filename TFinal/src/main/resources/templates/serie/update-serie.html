@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>ProductsApp | Aplicación para Gestión de Productos.</title>
+    <title>PelisRate | Actualizar película</title>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@
     <main role="main">
 	<div style="padding-top: 40px" class="container">
       <!-- Main for a primary marketing message or call to action -->
-      <h1 class="h3 mb-4 text-gray-800">Actualizar Pelicula</h1>
+      <h1 class="h3 mb-4 text-gray-800">Actualizar Película</h1>
       <hr>
 		 <form th:action="@{/series/update-{idSerie}(idSerie=${serie.idSerie})}" th:object="${serie}" method="post" enctype="multipart/form-data">
                         <div class="form-group row">
