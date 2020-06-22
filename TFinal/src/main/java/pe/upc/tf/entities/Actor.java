@@ -52,7 +52,7 @@ public class Actor implements Serializable {
 	@Column(name = "dateActor")
 	private Date dateActor;
 	
-	
+	/*Aqui se hace la unión muchos a muchos con la entidad serie, para uqe así pueda guardar adecuadamente en qué serie estuvo un actor*/
 	@ManyToMany
 	@JoinTable (
 		name = "Actor_Serie",
