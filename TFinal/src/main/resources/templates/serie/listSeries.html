@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      >
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,12 +45,24 @@
           </form>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="/">Listado</a>
+              <a class="nav-link active" href="/listadeseos">Listado</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/productList">Iniciar sesión</a>
-            </li>         
-          </ul>  
+            <span sec:authorize="!isAuthenticated()">
+              <a class="nav-link" href="/login">Iniciar sesión</a>
+              </span>
+            </li>
+            <li class="nav-item">
+            <div sec:authorize="hasAuthority('ADMINISTRADOR')"> 
+	 			<a class="nav-link" href="/goadmin"><span sec:authentication="name"></span></a>
+    		</div>
+    		</li>
+    		<li class="nav-item">
+            <div sec:authorize="hasAuthority('USUARIO')">
+	 			<a class="nav-link" th:href="@{/edituser}"><span sec:authentication="name"></span></a>
+    		</div>
+    		</li>          
+          </ul>   
         </div>
       </nav>
     </header>
