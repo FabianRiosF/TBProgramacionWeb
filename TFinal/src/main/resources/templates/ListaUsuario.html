@@ -1,0 +1,101 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="icon" href="favicon.ico">
+
+    <title>Listado de deseos de películas de usuario</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/brands.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/regular.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/solid.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/svg-with-js.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/v4-shims.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/"><img class="logo-pelis" src= "images/Logopelisrate.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+		<div class="container">
+  			<div class="col-sm-11">
+					<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          				<form class="form-inline">
+          					<img class="estrella" src="images/Estrella.png">
+          						<h1 class="Usermode">User Mode</h1>
+          					<img class="estrella" src="images/Estrella.png">
+          				</form>
+    				</div>
+    		</div>
+    		<div class="col-sm-1">
+    				<ul class="navbar-nav mr-auto">
+            			<li class="nav-item">
+              				<a class="nav-link" href="/modificaru">Kaleb</a>
+            			</li>         
+          			</ul>
+				</div>
+  			</div>
+      </nav>
+    </header>
+
+    <main role="main">
+         
+
+      <hr><br>
+		<h1 class="titulo">Bienvenido Kaleb</h1>
+		<br> 
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Productos</strong></h4>            
+          <div class="card-body">            
+            <hr>
+          <table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Nombre</th>
+								<th scope="col">Fecha de lanzamiento</th>
+								<th scope="col">Eliminar</th>
+							</tr>
+						</thead>
+			</table>
+          </div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary btn-lg">Borrar Lista</button>
+        <br>
+        <br>
+        <br>
+        <a href="/" type="button" class="btn btn-secondary btn-lg btn-block" >Regresar al inicio</a>
+      <hr>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2020 PelisRate, Inc. | Todos los derechos reservados | Autor: Rodrigo Loayza | &middot; <a href="#">Privacy</a>
+          &middot; <a href="#">Terms</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

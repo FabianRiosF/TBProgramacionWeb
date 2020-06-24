@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>PelisRate | Película</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/brands.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/regular.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/solid.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/svg-with-js.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/v4-shims.min.css" rel="stylesheet">
+  </head>
+
+   <body>
+ <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/"><img class="logo-pelis" src= "images/Logopelisrate.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <form class="form-inline">
+          <select class="custom-select custom-select mb-3">
+              <option selected>Todos</option>
+              <option value="1">Películas</option>
+              <option value="2">Series</option>
+              <option value="3">Actores</option>
+            </select>
+            <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Busca en PelisRate">
+            <button type="submit" class="boton"><img class="boton-buscar" src= "images/Buscar.PNG"></button>
+          </form>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/listadeseos">Listado</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logear">Iniciar sesión</a>
+            </li>         
+          </ul>  
+        </div>
+      </nav>
+    </header>
+
+
+<!--PORTADA PELICULA,INICIO-->
+    <div class="banner banner_color ">
+      <div class="container ">
+        <div class="row">
+          <div  class="container">
+
+            <div class="text pt-5 titulo_PeliculasPlataforma">
+              <h1>Once Upon a Time in Hollywood (2019)</h1>
+
+            </div>
+
+
+            <div class="row">
+              <div class="col-6 ">
+                <img   class="img-thumbnail foto_pelicula_portada" src="images\Posters\onceuopnatime.jpg" alt="Galeria" height="280" width="280">
+              </div>
+
+              <br>
+
+              <div class="col-6">
+                <div class="row descripcion">
+
+
+                  A finales de los 60, Hollywood empieza a cambiar y el actor Rick Dalton trata de adaptarse a los nuevos tiempos. Junto a su doble, ambos experimentan problemas para modificar sus hábitos, debido a lo enraizados que están. Al mismo tiempo, nace una relación entre Rick y la actriz Sharon Tate, que fue víctima de la familia Manson en la matanza de 1969.
+                  <p>  </p>
+                  <p>Fecha de estreno: 24 de julio de 2019</p>
+                </div>
+                <div class="row">
+                  <button id="agregarlista" class="btn btn-dark btn-md boton_agregar_lista_favoritos boton_agregar_lista" type="button" name="button">Agregar a lista</button>
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!--PORTADA PELICULA,FIN-->
+
+	<main role="main">
+
+        <div class="text pt-5 titulo_ActoresPlataforma">
+          <h1>Actores:</h1>
+        </div>
+        
+        <table class="table table-striped tabla_actores">
+			<thead class="thead-dark">
+					<tr>
+						<th scope="col">Nombre</th>
+						<th scope="col">Foto</th>
+					</tr>
+			</thead>
+		</table>
+		
+		<div class="text pt-5 titulo_ActoresPlataforma">
+          <h1>Publica tu comentario:</h1>
+ 		</div>
+ 		<div class="form-group comentario">
+  				<textarea class="form-control" rows="5" id="comment"></textarea>
+		</div>
+		<button type="button" class="btn btn-primary btn-lg botonpubli">Publicar</button>
+		
+		<table class="table table-striped tabla_actores">
+			<thead class="thead-dark">
+					<tr>
+						<th scope="col">Nombre</th>
+						<th scope="col">Comentario</th>
+					</tr>
+			</thead>
+		</table>
+		
+  </main>
+  
+
+   <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2020 PelisRate, Inc. | Todos los derechos reservados | Autor: Rodrigo Loayza | &middot; <a href="#">Privacy</a>
+          &middot; <a href="#">Terms</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

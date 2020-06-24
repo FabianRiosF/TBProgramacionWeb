@@ -1,0 +1,128 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>PelisRate | Administrador </title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/brands.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/regular.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/solid.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/svg-with-js.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/v4-shims.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+  </head>
+
+   <body>
+ <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/"><img class="logo-pelis" src= "images/Logopelisrate.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+		<div class="container">
+  			<div class="col-sm-11">
+					<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          				<form class="form-inline">
+          					<img class="estrella" src="images/Estrella.png">
+          						<h1 class="Usermode">Admin Mode</h1>
+          					<img class="estrella" src="images/Estrella.png">
+          				</form>
+    				</div>
+    		</div>
+    		<div class="col-sm-1">
+    				<ul class="navbar-nav mr-auto">
+            			<li class="nav-item">
+              				<a class="nav-link" href="/modificaru">Roberto</a>
+            			</li>         
+          			</ul>
+				</div>
+  			</div>
+      </nav>
+    </header>
+
+
+<!--PORTADA PELICULA,INICIO-->
+<div class="container">
+	
+	
+	<h1>Bienvenido, <span sec:authentication="name"></span> </h1>
+
+   <br>
+   
+   <br>
+
+  <!--PORTADA PELICULA,FIN-->
+
+	<main role="main">
+
+	
+		
+		<div class="text usuariosdisponibles">
+          <h1>Lista de usuarios de la plataforma:</h1>
+         </div>
+		
+		<table class="table table-striped tabla_actores">
+			<thead class="thead-dark">
+					<tr>
+						<th scope="col">Nombre de usuario</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">email</th>
+						<th scope="col">Perfil</th>
+						<th scope="col">Fecha de ingreso</th>
+						<th scope="col">Editar</th>
+						<th scope="col">Eliminar</th>
+					</tr>
+			</thead>
+			<tbody>
+			<tr th:each="user : ${users}">
+				<td th:text="${user.username}"></td>
+				<td th:text="${user.nombre}"></td>
+				<td th:text="${user.email}"></td>
+				<td th:text="${user.estatus}"></td>
+				<td th:text="${#dates.format(user.fechaRegistro, 'dd-MM-yyyy')}"></td>
+				<td><a th:href="@{/edit/{id}(id=${user.id})}">Update</a></td>
+				<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+			</tr>
+		</tbody>
+		</table>
+		
+		<a class="btn btn-primary" th:href="@{/actores/actoresList}" title="lista de Actores" role="button"><i class="fa fa-eye" aria-hidden="true"></i> Ver Lista de Actores</a>
+		<a class="btn btn-primary" th:href="@{/peliculas/peliculasList}" title="Lista de Peliculas" role="button"><i class="fa fa-eye" aria-hidden="true"></i> Ver Lista de Películas</a>
+		<a class="btn btn-primary" th:href="@{/series/seriesList}" title="Lista de Series" role="button"><i class="fa fa-eye" aria-hidden="true"></i> Ver Lista de Series</a>
+		<br>
+		<div style="margin:15px 0px" class="block">
+		<a class="btn btn-primary" href="/addUser">Nuevo</a> 
+		<a class="btn btn-primary" th:href="@{/logout}">Salir</a>
+		</div>
+		</div>
+
+  </main>
+  
+
+   <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2020 PelisRate, Inc. | Todos los derechos reservados | Autor: Rodrigo Loayza | &middot; <a href="#">Privacy</a>
+          &middot; <a href="#">Terms</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
