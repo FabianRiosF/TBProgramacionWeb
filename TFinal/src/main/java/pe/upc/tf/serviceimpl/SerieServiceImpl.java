@@ -52,7 +52,7 @@ public class SerieServiceImpl implements SerieService{
 	@Override
 	public List<Serie> BuscarSerie(String nameSerie) {
 		// TODO Auto-generated method stub
-		return null;
+		return (List<Serie>)serieR.BuscarSerie(nameSerie);
 	}
 
 	@Override

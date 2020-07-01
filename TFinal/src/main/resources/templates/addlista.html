@@ -1,7 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>PelisRate | Reseñas de películas y series</title>
+    <title>PelisRate | Crear Lista</title>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
@@ -24,8 +22,7 @@
   </head>
 
   <body>
-
-    <header>
+ <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/"><img class="logo-pelis" src= "images/Logopelisrate.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,133 +64,73 @@
       </nav>
     </header>
 
-    <main role="main">
-
-      <!-- Main for a primary marketing message or call to action -->
-      <div class="jumbotron banner">
-        <div class="container">
-  			<div class="row">
-    			<div class="col-sm">
-      				<h1 class="PelisWhite"> PELIS </h1>
-      				<hr class="dividewhite"/>
-      				<h1 class="PelisDark">RATE</h1>
-    		</div>
-    		<div class="col-sm">
-							<video
-								poster="/images/avengers.jpg"
-								controls="controls" width="500" height="300">
-								<source
-									src="/images/avengerstrailer.mp4"
-									type="video/mp4">
-							</video>
-					</div>
-  			</div>
-		</div>
-         
-      </div>
+	<div class="container">
+      <h1 class="h3 mb-4 text-gray-800">Crear Lista</h1>
       <hr>
-      <h1 class="Titulo"> Destacados </h1>
-			<div class="container-fluid">
-  			<div class="row separacion">
-	    		<div class="col-sm col-ac1 Pelicula">
-	    		<a href ="/peliculasLista">
-	    			<img src="/images/BB.jpg">
-	    			<div class="negro">
-	      				<h1 class="Contenidoa"> Breaking Bad </h1>
-	      			</div>
-	      		</a>
-	    			</div>
-	    		<div class="col-sm col-ac2 Pelicula">
-	    		<a href ="/peliculasLista">
-	    		<img src="/images/joker.png">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> El Joker </h1>
-	    			</div>
-				</div>
-				</a>
-				<div class="col-sm col-ac3 Pelicula">
-				<a href ="/seriesLista">
-				<img src="/images/casadepapel.jpg">
-					<div class="negro">
-	      				<h1 class="Contenidoa"> La casa de papel </h1>
-	      			</div>
-	    		</div>
-	    		</a>
-	    		<div class="col-sm col-ac4 Pelicula">
-	    		<a href ="/seriesLista">
-	    		<img src="/images/1917.jpg">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> 1917 </h1>
-	    			</div>
-				</div>
-				</a>
-  			</div>
-      <hr>	
-      <hr>
-      <h1 class="Titulo"> Actores </h1>
-			<div class="container-fluid">
-  			<div class="row">
-	    		<div class="col-sm col-ac1 Actor">
-	    		<a href ="/actore">
-	    			<img src="/images/jenna.jpg">
-	    			<div class="negro">
-	      				<h1 class="Contenidoa"> Jenna Colleman </h1>
-	      			</div>
-	    			</div>
-	    		</a>
-	    		<div class="col-sm col-ac2 Actor">
-	    		<a href ="/actore">
-	    		<img src="/images/rebecca.jpg">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> Rebecca Ryan </h1>
-	    			</div>
-				</div>
-				</a>
-				<div class="col-sm col-ac3 Actor">
-				<a href ="/actore">
-				<img src="/images/david.jpg">
-					<div class="negro">
-	      				<h1 class="Contenidoa"> David Lascher </h1>
-	      			</div>
-	    		</div>
-	    		</a>
-	    		<div class="col-sm col-ac4 Actor">
-	    		<a href ="/actore">
-	    		<img src="/images/matt.jpg">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> Matt Reeves </h1>
-	    			</div>
-				</div>
-				</a>
-				<div class="col-sm col-ac5 Actor">
-				<a href ="/actore">
-				<img src="/images/sally.jpg">
-					<div class="negro">
-	    				<h1 class="Contenidoa"> Sally Hawkins </h1>
-	    			</div>
-				</div>
-				</a>
-  			</div>
-      <hr>
-         
-         
-      </div> <!-- /container -->
+      <form th:action="@{/lista}" th:object="${lista}" method="post">
+                        <div class="form-group row">
+                            <label for="nameLista" class="col-sm-2 col-form-label">Nombre de Lista: 
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{nameLista}" class="form-control"
+                                    th:errorclass="'form-control alert-danger'" /> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('nameLista')}" th:errors="*{nameLista}"></small>
+                            </div>
+                            </div>
+                            <div class="form-group row">
+							<label for="pelis" class="col-sm-2 col-form-label">Peliculas:</label>
+							<div class="col-sm-6">
+								<select multiple class="custom-select custom-select-sm"
+									th:field="*{Lista_Pelicula}">
+									<option th:each="Lista_Pelicula : ${listPeliculas}"
+										th:value="${Lista_Pelicula.idPelicula}" th:utext="${Lista_Pelicula.namePelicula}" />
+								</select>
+							</div>
+							</div>
+							   <div class="form-group row">
+							<label for="series" class="col-sm-2 col-form-label">Series:</label>
+							<div class="col-sm-6">
+								<select multiple class="custom-select custom-select-sm"
+									th:field="*{Lista_Serie}">
+									<option th:each="Lista_Serie : ${listSeries}"
+										th:value="${Lista_Serie.idSerie}" th:utext="${Lista_Serie.nameSerie}" />
+								</select>
+							</div>
 
-    </main>
+                        </div>
+                        
+                                <input type="hidden" th:value="${user.id}" name="usuario" class="form-control">
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Guardar" class="btn btn-secondary"></input>
+                                <a href="/listas" class="btn btn-danger">Regresar</a>
+                            </div>
+                        </div>
+                        <p th:text="${mensaje}" class="form-text text-danger"></p>
+                        </div>
+                        
+                                      
+                        
 
-    <footer class="footer">
+	</form>
+	</div>
+
+
+         <footer class="footer">
       <div class="container">
         <p>
-          &copy; 2020 PelisRate, Inc. | Todos los derechos reservados | Autor: Rodrigo Loayza | &middot; <a href="#">Privacy</a>
-          &middot; <a href="#">Terms</a>
+          &copy; 2020 PelisRate, Inc. | Todos los derechos reservados
         </p>
       </div>
     </footer>
+	<script>
 
+	</script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>

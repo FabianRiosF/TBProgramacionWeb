@@ -3,15 +3,19 @@ package pe.upc.tf.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ReportAsSingleViolation;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,9 +28,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 
 import pe.upc.tf.entities.Actor;
 import pe.upc.tf.entities.Pelicula;
+import pe.upc.tf.entities.Serie;
+import pe.upc.tf.entities.Usuario;
 import pe.upc.tf.service.ActorService;
 import pe.upc.tf.service.PeliculaService;
+import pe.upc.tf.service.SerieService;
+import pe.upc.tf.service.UsuarioService;
 import pe.upc.tf.repositories.IPeliculaRepository;
+import pe.upc.tf.repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping("/peliculas")
@@ -40,6 +49,12 @@ public class PeliculaController {
 	
 	@Autowired
 	private IPeliculaRepository pRepository;
+	
+	@Autowired
+	private UsuarioService uService;
+	
+	@Autowired
+	private SerieService sService;
 	
 	@Autowired
 	private ActorService aService;
@@ -70,7 +85,7 @@ public class PeliculaController {
 	public String savePelicula(@Valid Pelicula pelicula, BindingResult result, Model model, SessionStatus status, @RequestParam("imagePelicula")MultipartFile multiPart)
 			throws Exception {
 		
-		if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("datePelicula")) {
+		if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("datePelicula") || result.hasFieldErrors("descPelicula")) {
 			model.addAttribute("listActores", aService.ListarActores());
 			return "pelicula/pelicula";
 		} 
@@ -133,7 +148,7 @@ public class PeliculaController {
 	    @PostMapping("/update-{idPelicula}")
 	    public String updatePelicula(@PathVariable("idPelicula") Integer idPelicula, @Valid Pelicula pelicula, BindingResult result, Model model, @RequestParam("imagePelicula")MultipartFile multiPart){
 	     
-	        if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("datePelicula")) {
+	        if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("datePelicula")|| result.hasFieldErrors("descPelicula")) {
 	        	pelicula.setIdPelicula(idPelicula);
 				model.addAttribute("listActores", aService.ListarActores());
 				return "update-pelicula";
@@ -167,6 +182,31 @@ public class PeliculaController {
 	        }
 	       
 	        return "pelicula/update-pelicula";
+	    }
+	    
+	    @RequestMapping("/buscarpelicula")
+	    public String busquedapelicula(@ModelAttribute Pelicula pelicula, Map < String, Object> model, HttpServletRequest request) {
+	    	String tipo = request.getParameter("tipo");
+	    	pelicula.setNamePelicula(pelicula.getNamePelicula());
+	    	switch (tipo) {
+			case "Peliculas":
+				Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
+				Usuario usuario = uService.findByUsername(autenticado.getName()); 
+				model.put("usuario", usuario.getId());
+	    		model.put("listPeliculas", pService.ListarBusquedaPeliculas(pelicula.getNamePelicula()));
+	    		model.put("pelicula", new Pelicula());
+	    		return "pelicula/listbusqueda";
+			case "Series":
+				Authentication autenticado1 = SecurityContextHolder.getContext().getAuthentication();
+				Usuario usuario1 = uService.findByUsername(autenticado1.getName()); 
+				model.put("usuario", usuario1.getId());
+				model.put("listSeries", sService.BuscarSerie(pelicula.getNamePelicula()));
+				model.put("pelicula", new Pelicula());
+	    		return "serie/listbusqueda";
+			default:
+				System.out.println(tipo.toString());
+	    		return "home";
+			}
 	    }
 	
 }

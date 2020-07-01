@@ -14,6 +14,8 @@ public interface IResenaPeliculaRepository extends JpaRepository<ResenaPelicula,
 	
 	@Query("from ResenaPelicula rp where rp.pelicula.idPelicula = :idPelicula")
 	List<ResenaPelicula> ListarResenasPelicula(@Param("idPelicula")int idPelicula);
+	
+
 }
 
 	

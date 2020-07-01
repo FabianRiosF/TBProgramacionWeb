@@ -13,8 +13,8 @@ import pe.upc.tf.entities.Pelicula;
 @Repository
 public interface IPeliculaRepository extends JpaRepository<Pelicula, Integer>{
 	
-	@Query("from Pelicula p where p.namePelicula like %:namePelicula%")
-	public List<Pelicula> BuscarPelicula(@Param("namePelicula")String namePelicula);
+	@Query("from Pelicula p where p.namePelicula like %:busqueda%")
+	public List<Pelicula> busquedapelicula(@Param("busqueda") String busqueda);
 	
 	@Query("select count(p.namePelicula) from Pelicula p where p.namePelicula =:namePelicula")
 	public int buscarNombrePelicula(@Param("namePelicula") String namePelicula);

@@ -76,4 +76,9 @@ public class PeliculaServiceImpl implements PeliculaService{
 		return peliculaR.findById(idPelicula).orElseThrow(() -> new IllegalArgumentException("Pelicula invalido"));
 	}
 
+	@Override
+	public List<Pelicula> ListarBusquedaPeliculas(String busqueda) {
+		return (List<Pelicula>)peliculaR.busquedapelicula(busqueda);
+	}
+
 }

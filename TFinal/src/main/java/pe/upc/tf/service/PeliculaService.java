@@ -15,4 +15,5 @@ public interface PeliculaService {
 	public Pelicula BuscarPeliculaID(int idPelicula);
 	public List<Actor> ListarActorPeliculas(int idPelicula);
 	public List<Pelicula> ListarPeliculas();
+	public List<Pelicula> ListarBusquedaPeliculas(String busqueda);
 }

@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      >
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,49 +9,55 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>PelisRate | Lista de Peliculas</title>
+    <title>Pelis Rate | Busqueda de películas</title>
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/brands.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/regular.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/solid.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/svg-with-js.min.css" rel="stylesheet">
-    <link href="/vendor/fontawesome-free/css/v4-shims.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/brands.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/regular.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/solid.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/svg-with-js.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome-free/css/v4-shims.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
   </head>
 
   <body>
 
-     <header>
+    <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/"><img class="logo-pelis" src= "../images/Logopelisrate.png"></a>
+        <a class="navbar-brand" href="../"><img class="logo-pelis" src= "../images/Logopelisrate.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="d-flex justify-content-center collapse navbar-collapse" id="navbarsExampleDefault">
-          
+          <form th:action="@{../peliculas/buscarpelicula}" method="post" th:object="${pelicula}" class="form-inline">
+          <select class="custom-select custom-select mb-3" id="tipo" name="tipo">
+              <option value="Peliculas">Peliculas</option>
+              <option value="Series">Series</option>
+           </select>
+            <input type="text" class="form-control mb-3 TextoBusqueda" id="namePelicula" th:field="*{namePelicula}" placeholder="Busca en PelisRate">
+            <button type="submit" class="boton"><i class="fa fa-search searchmenu"></i></button>
+		  </form>
           <div class="d-flex justify-content-end">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link active" th:href="@{/listas}">Mis Listas</a>
+              <a class="nav-link active" href="../listadeseos">Listado</a>
             </li>
             <li class="nav-item">
             <span sec:authorize="!isAuthenticated()">
-              <a class="nav-link" href="/login">Iniciar sesión</a>
+              <a class="nav-link" href="../login">Iniciar sesión</a>
               </span>
             </li>
             <li class="nav-item">
             <div sec:authorize="hasAuthority('ADMINISTRADOR')"> 
-	 			<a class="nav-link" href="/goadmin"><span sec:authentication="name"></span></a>
+	 			<a class="nav-link" href="../goadmin"><span sec:authentication="name"></span></a>
     		</div>
     		</li>
     		<li class="nav-item">
             <div sec:authorize="hasAuthority('USUARIO')">
-	 			<a class="nav-link" th:href="@{/edituser}"><span sec:authentication="name"></span></a>
+	 			<a class="nav-link" th:href="@{../edituser}"><span sec:authentication="name"></span></a>
     		</div>
     		</li>          
           </ul>
@@ -63,8 +69,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 
         <div class="card">
           <h4 class="card-header"><strong>Listado de Peliculas</strong></h4>              
-          <div class="card-body">
-            <a class="btn btn-primary" th:href="@{/peliculas/add-pelicula}" title="Crear nueva Pelicula" role="button"><i class="fa fa-film" aria-hidden="true"></i> Nueva Película</a>            
+          <div class="card-body">            
             <hr>
           <table class="table table-striped">
 						<thead class="thead-dark">
@@ -74,8 +79,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 								<th scope="col">Nombre</th>
 								<th scope="col">Fecha de estreno</th>
 								<th scope="col">Actores</th>
-								<th scope="col"></th>
-								<th scope="col"></th>
+								<th scope="col"></th>								
 							</tr>
 						</thead>
 						<tbody>
@@ -85,9 +89,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 								<td th:text="${pelicula.namePelicula}"></td>
 								<td th:text="${#dates.format(pelicula.datePelicula,'dd/MM/yyyy')}"></td>
 								<td><li th:each="Actores : ${pelicula.Actores}" th:text="${Actores.nameActor}"></li></td>
-								<td><a th:href="@{/peliculas/edit-{idPelicula}(idPelicula=${pelicula.idPelicula})}" class="btn btn-secondary">Editar</a></td>
-								<td><a th:href="@{/peliculas/delete?idPelicula=}+${pelicula.idPelicula}"
-									class="btn btn-secondary">Eliminar</a></td>
+								<td><a th:href="@{/add-resena-{idPelicula}-{idPelicula}(idPelicula=${pelicula.idPelicula}, idUsuario = ${usuario})}" class="btn btn-secondary">Reseñar</a></td>
 							</tr>
 						</tbody>
 					</table>

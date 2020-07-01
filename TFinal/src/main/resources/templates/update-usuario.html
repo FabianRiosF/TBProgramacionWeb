@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update User</title>
+<title>Actualizar datos personales</title>
 </head>
 <body>
-   <p th:text="${session.tienda}" th:unless="${session == null}">[...]</p>
-    <a th:href="@{/}">Regresar</a>
-    <h3>Update User</h3>
-    <br>
-	<form action="#" th:action="@{/updateusuarioform/{id}(id=${user.id})}" th:object="${user}" method="post">
-	
-		<label for="username">User</label> 
-		<input type="text" th:field="*{username}" name="username" id="username" placeholder="Username"> 
-		<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-		<br>	
-		<label for="nombre">Nombre</label> 
-		<input type="text" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Nombre">
+    <div id="register">
+        <h3 class="text-center text-white pt-5">Registro</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="#" th:action="@{/updateusuarioform/{id}(id=${user.id})}" th:object="${user}" method="post">
+                            <h3 class="text-center text-info">Registro</h3>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Nombre de usuario:</label><br>
+	            <input type="text" th:field="*{username}" class="form-control" name="username" id="username" placeholder="Username"> 
+	            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                            </div>
+	        <div class="form-group">
+		<label for="nombre" class="text-info">Nombre</label><br>
+		<input type="text" th:field="*{nombre}" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
 		<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
-		<br>	
-		<label for="email">Email</label> 
-		<input type="text" th:field="*{email}" id="email" name="email" placeholder="Email">
+                            </div>
+	        <div class="form-group">
+		<label for="email" class="text-info">Email</label><br>
+		<input type="text" th:field="*{email}" class="form-control" id="email" name="email" placeholder="Email">
 		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-		<label for="password">*(Nuevo Password)</label> 
-		<input type="text" value="" th:field="*{password}" id="password" name="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+		<label for="password" class="text-info">Nueva Contrasena</label><br>
+		<input type="password" th:field="*{password}" id="password" class="form-control" name="password" placeholder="Password">
 		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-		<br>
-		<label for="fechaRegistro">fechaRegistro</label> 
-		<input type="text" th:field="*{fechaRegistro}" id="fechaRegistro" name="fechaRegistro" placeholder="FechaRegistro">
-		<span th:if="${#fields.hasErrors('fechaRegistro')}" th:errors="*{fechaRegistro}"></span>
-		<br>
-		<input type="submit" value="Update User"> --- <a th:href="@{/logout}">Salir</a>
-	</form>
+                            </div>
+                            <div class="form-group">	
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Registrar">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a th:href="@{/logout}">Salir de la sesion</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
- 
 </body>
 </html>

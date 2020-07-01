@@ -50,6 +50,10 @@ public class Serie implements Serializable {
 	@Column(name = "imageSerie", length = 300)
 	private String imageSerie;
 	
+	@NotEmpty(message = "Debe ingresar descripcion de serie*")
+	@Column(name = "descSerie", length=800, nullable = false)
+	private String descSerie;
+	
 	@ManyToMany
 	@JoinTable (
 		name = "Actor_Serie",
@@ -57,7 +61,11 @@ public class Serie implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "idActor" , nullable = false))
 	private List<Actor> Actores;
 	
-	@ManyToMany (mappedBy = "Lista_Serie")
+	@ManyToMany
+	@JoinTable (
+			name = "Lista_Serie",
+			joinColumns = @JoinColumn(name = "idSerie", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "idLista" , nullable = false))
 	private List<Lista> Listas;
 	
 	@OneToMany(mappedBy = "serie")
@@ -95,8 +103,16 @@ public class Serie implements Serializable {
 	public int getIdSerie() {
 		return idSerie;
 	}
+	
+	
 
 
+	public String getDescSerie() {
+		return descSerie;
+	}
+	public void setDescSerie(String descSerie) {
+		this.descSerie = descSerie;
+	}
 	public List<Lista> getListas() {
 		return Listas;
 	}
@@ -160,15 +176,16 @@ public class Serie implements Serializable {
 	
 	
 
-	
-
-	public Serie(int idSerie,String nameSerie,Date dateSerie, String imageSerie,
-			List<Actor> actores, List<Lista> listas, List<ResenaSerie> series) {
+	public Serie(int idSerie, String nameSerie,
+			Date dateSerie, String imageSerie,
+			 String descSerie, List<Actor> actores,
+			List<Lista> listas, List<ResenaSerie> series) {
 		super();
 		this.idSerie = idSerie;
 		this.nameSerie = nameSerie;
 		this.dateSerie = dateSerie;
 		this.imageSerie = imageSerie;
+		this.descSerie = descSerie;
 		Actores = actores;
 		Listas = listas;
 		this.series = series;

@@ -30,15 +30,29 @@ public class ResenaPelicula implements Serializable {
 	private Pelicula pelicula;
  
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
-    private Usuario usuariopeli;
+    @JoinColumn(name = "id")
+    private Usuario usuario;
+    
+    private String idus;
 	
-    
-    
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
 	public int getIdResenaPelicula() {
 		return idResenaPelicula;
 	}
 
+    
+	public String getIdus() {
+		return idus = this.usuario.getUsername();
+	}
+
+	public void setIdus(String idus) {
+		this.idus = idus;
+	}
+	
 
 	public void setIdResenaPelicula(int idResenaPelicula) {
 		this.idResenaPelicula = idResenaPelicula;
@@ -66,21 +80,26 @@ public class ResenaPelicula implements Serializable {
 
 
 	public Usuario getUsuariopeli() {
-		return usuariopeli;
+		return usuario;
 	}
 
 
-	public void setUsuario(Usuario usuariopeli) {
-		this.usuariopeli = usuariopeli;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	
-	public ResenaPelicula(int idResenaPelicula, String textResenaPelicula, Pelicula pelicula, Usuario usuariopeli) {
+	
+
+
+	public ResenaPelicula(int idResenaPelicula, String textResenaPelicula, Pelicula pelicula,
+			Usuario usuario, String idus) {
 		super();
 		this.idResenaPelicula = idResenaPelicula;
 		this.textResenaPelicula = textResenaPelicula;
 		this.pelicula = pelicula;
-		this.usuariopeli = usuariopeli;
+		this.usuario = usuario;
+		this.idus = idus;
 	}
 
 

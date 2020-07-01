@@ -13,12 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="Lista")
@@ -29,34 +32,40 @@ public class Lista implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idLista;
 	
-	@NotEmpty(message = "Debe ingresar nombre*")
+	@NotEmpty(message = "Debe ingresar nombre de lista*")
 	@Column(name = "nameLista", length = 50, nullable = false)
 	private String nameLista;
 	
-	@NotNull
-	@Past(message = "La fecha debe estar en el pasado")
+
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dateLista")
 	private Date dateLista;
 	
+	
 	@ManyToOne
-	@JoinColumn(name="idUsuario")
+	@JoinColumn(name="id")
 	private Usuario usuario;
 	
 	@ManyToMany
 	@JoinTable (
 		name = "Lista_Serie",
-		joinColumns = @JoinColumn(name = "idLista"),
-		inverseJoinColumns = @JoinColumn(name = "idSerie"))
+		joinColumns = @JoinColumn(name = "idLista", nullable = false),
+		inverseJoinColumns = @JoinColumn(name = "idSerie", nullable = false))
 	private List<Serie> Lista_Serie;
 	
 	@ManyToMany
 	@JoinTable (
 		name = "Lista_Pelicula",
-		joinColumns = @JoinColumn(name = "idLista"),
-		inverseJoinColumns = @JoinColumn(name = "idPelicula"))
+		joinColumns = @JoinColumn(name = "idLista", nullable = false),
+		inverseJoinColumns = @JoinColumn(name = "idPelicula", nullable = false))
 	private List<Pelicula> Lista_Pelicula;
 
+	
+	@PrePersist
+	public void prePersist() {
+		dateLista = new Date();
+	}
 	
 	public int getIdLista() {
 		return idLista;

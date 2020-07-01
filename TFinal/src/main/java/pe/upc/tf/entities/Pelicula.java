@@ -37,9 +37,13 @@ public class Pelicula implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPelicula;
 	
-	@NotEmpty(message = "Debe ingresar nombre de pel[icula*")
+	@NotEmpty(message = "Debe ingresar nombre de pelicula*")
 	@Column(name = "namePelicula", length = 100, nullable = false)
 	private String namePelicula;
+	
+	@NotEmpty(message = "Debe ingresar descripcion de pelicula*")
+	@Column(name = "descPelicula", length=800, nullable = false)
+	private String descPelicula;
 	
 	@NotNull
 	@Past(message = "La fecha debe estar en el pasado")
@@ -58,11 +62,15 @@ public class Pelicula implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "idActor" , nullable = false))
 	private List<Actor> Actores;
 	
-	@ManyToMany (mappedBy = "Lista_Pelicula")
-	private List<Lista> Listas;
+	@ManyToMany
+	@JoinTable (
+			name = "Lista_Pelicula",
+			joinColumns = @JoinColumn(name = "idPelicula", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "idLista" , nullable = false))
+		private List<Lista> Listas;
 	
 	@OneToMany(mappedBy = "pelicula")
-	private List<ResenaPelicula> peliculas;
+	private List<ResenaPelicula> resenas;
 
 	public static String guardarArchivo(MultipartFile multiPart, String ruta) {  
 		// Obtenemos el nombre original del archivo.
@@ -103,13 +111,19 @@ public class Pelicula implements Serializable {
 	}
 
 
-	public List<ResenaPelicula> getPeliculas() {
-		return peliculas;
+	public List<ResenaPelicula> getResenas() {
+		return resenas;
 	}
 
 
-	public void setPeliculas(List<ResenaPelicula> peliculas) {
-		this.peliculas = peliculas;
+	public String getDescPelicula() {
+		return descPelicula;
+	}
+	public void setDescPelicula(String descPelicula) {
+		this.descPelicula = descPelicula;
+	}
+	public void setResenas(List<ResenaPelicula> resenas) {
+		this.resenas = resenas;
 	}
 
 
@@ -161,16 +175,17 @@ public class Pelicula implements Serializable {
 	
 	
 
-	public Pelicula(int idPelicula, String namePelicula, Date datePelicula, String imagePelicula,
-			List<Actor> actores, List<Lista> listas, List<ResenaPelicula> peliculas) {
+	public Pelicula(int idPelicula, String namePelicula,String descPelicula , Date datePelicula, String imagePelicula,
+			List<Actor> actores, List<Lista> listas, List<ResenaPelicula> resenas) {
 		super();
 		this.idPelicula = idPelicula;
 		this.namePelicula = namePelicula;
 		this.datePelicula = datePelicula;
 		this.imagePelicula = imagePelicula;
+		this.descPelicula = descPelicula;
 		Actores = actores;
 		Listas = listas;
-		this.peliculas = peliculas;
+		this.resenas = resenas;
 	}
 	public Pelicula() {
 		super();

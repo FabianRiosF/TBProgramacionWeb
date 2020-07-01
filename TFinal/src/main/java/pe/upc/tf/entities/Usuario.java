@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +27,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment MySQL
 	private Integer id;
+	
 	private String username;
 	@NotBlank(message = "Nombre es mandatorio")
 	private String nombre;
@@ -38,10 +40,27 @@ public class Usuario {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRegistro;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<ResenaPelicula> resenas;
 
 	public Integer getId() {
 		return id;
 	}
+
+	
+	
+	public List<ResenaPelicula> getResenas() {
+		return resenas;
+	}
+
+
+
+	public void setResenas(List<ResenaPelicula> resenas) {
+		this.resenas = resenas;
+	}
+
+
 
 	public void setId(Integer id) {
 		this.id = id;

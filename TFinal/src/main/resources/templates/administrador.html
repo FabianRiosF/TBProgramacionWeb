@@ -24,30 +24,38 @@
   </head>
 
    <body>
- <header>
+  <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/"><img class="logo-pelis" src= "images/Logopelisrate.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-		<div class="container">
-  			<div class="col-sm-11">
-					<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          				<form class="form-inline">
-          					<img class="estrella" src="images/Estrella.png">
-          						<h1 class="Usermode">Admin Mode</h1>
-          					<img class="estrella" src="images/Estrella.png">
-          				</form>
-    				</div>
+
+        <div class="d-flex justify-content-center collapse navbar-collapse" id="navbarsExampleDefault">
+          
+          <div class="d-flex justify-content-end">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/listas}">Mis Listas</a>
+            </li>
+            <li class="nav-item">
+            <span sec:authorize="!isAuthenticated()">
+              <a class="nav-link" href="/login">Iniciar sesión</a>
+              </span>
+            </li>
+            <li class="nav-item">
+            <div sec:authorize="hasAuthority('ADMINISTRADOR')"> 
+	 			<a class="nav-link" href="/goadmin"><span sec:authentication="name"></span></a>
     		</div>
-    		<div class="col-sm-1">
-    				<ul class="navbar-nav mr-auto">
-            			<li class="nav-item">
-              				<a class="nav-link" href="/modificaru">Roberto</a>
-            			</li>         
-          			</ul>
-				</div>
-  			</div>
+    		</li>
+    		<li class="nav-item">
+            <div sec:authorize="hasAuthority('USUARIO')">
+	 			<a class="nav-link" th:href="@{/edituser}"><span sec:authentication="name"></span></a>
+    		</div>
+    		</li>          
+          </ul>
+          </div>  
+        </div>
       </nav>
     </header>
 

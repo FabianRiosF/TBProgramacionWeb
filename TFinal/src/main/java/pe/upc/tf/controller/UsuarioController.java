@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import pe.upc.tf.entities.Pelicula;
 import pe.upc.tf.entities.Usuario;
 import pe.upc.tf.service.UsuarioService;
 
@@ -31,7 +32,6 @@ public class UsuarioController {
 
 	@GetMapping("/goadmin")
 	public String home(Model model, HttpSession session) {
-		
 		model.addAttribute("nombre", "Carlos");
 		model.addAttribute("users", userService.list());
 		session.setAttribute("tienda", "Pelis Rate");

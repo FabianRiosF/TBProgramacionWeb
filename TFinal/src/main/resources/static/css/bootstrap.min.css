@@ -315,3 +315,42 @@ button.btn.btn-primary.btn-lg.botonpubli {
 input#exampleFormControlInput1 {
     width: 370px;
 }
+
+.ulnost {
+    width: 21.5%;
+    display: inline-grid;
+    margin-right: 20px;
+}
+
+h3.title-desc {
+    text-decoration: underline;
+    margin-top: 36px;
+    font-size: 25px;
+}
+
+img.imgactorp {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 20px;
+    border: 2px solid #1a2a42;
+    height: 225px;
+}
+
+.ulnost li {
+    list-style-type: none;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+h2.titlerese {
+    margin-top: 31px;
+}
+
+.none {
+	display:none !important
+}
+
+h3.titleesc {
+    margin-top: 35px;
+}

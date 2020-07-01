@@ -1,7 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>PelisRate | Reseñas de películas y series</title>
+    <title>PelisRate | Reseñar Serie</title>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
@@ -68,124 +66,64 @@
     </header>
 
     <main role="main">
-
+	<div class="container">
       <!-- Main for a primary marketing message or call to action -->
-      <div class="jumbotron banner">
-        <div class="container">
-  			<div class="row">
-    			<div class="col-sm">
-      				<h1 class="PelisWhite"> PELIS </h1>
-      				<hr class="dividewhite"/>
-      				<h1 class="PelisDark">RATE</h1>
-    		</div>
-    		<div class="col-sm">
-							<video
-								poster="/images/avengers.jpg"
-								controls="controls" width="500" height="300">
-								<source
-									src="/images/avengerstrailer.mp4"
-									type="video/mp4">
-							</video>
-					</div>
-  			</div>
+      <hr>
+      <div class="row">
+      <div class="col-md-4">
+      <h1 th:object="${serie}" th:text="${serie.nameSerie}"></h1>
+      <img style="width:100%" th:object="${serie}" th:src="*{imageSerie}">
 		</div>
-         
-      </div>
-      <hr>
-      <h1 class="Titulo"> Destacados </h1>
-			<div class="container-fluid">
-  			<div class="row separacion">
-	    		<div class="col-sm col-ac1 Pelicula">
-	    		<a href ="/peliculasLista">
-	    			<img src="/images/BB.jpg">
-	    			<div class="negro">
-	      				<h1 class="Contenidoa"> Breaking Bad </h1>
-	      			</div>
-	      		</a>
-	    			</div>
-	    		<div class="col-sm col-ac2 Pelicula">
-	    		<a href ="/peliculasLista">
-	    		<img src="/images/joker.png">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> El Joker </h1>
-	    			</div>
-				</div>
-				</a>
-				<div class="col-sm col-ac3 Pelicula">
-				<a href ="/seriesLista">
-				<img src="/images/casadepapel.jpg">
-					<div class="negro">
-	      				<h1 class="Contenidoa"> La casa de papel </h1>
-	      			</div>
-	    		</div>
-	    		</a>
-	    		<div class="col-sm col-ac4 Pelicula">
-	    		<a href ="/seriesLista">
-	    		<img src="/images/1917.jpg">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> 1917 </h1>
-	    			</div>
-				</div>
-				</a>
-  			</div>
-      <hr>	
-      <hr>
-      <h1 class="Titulo"> Actores </h1>
-			<div class="container-fluid">
-  			<div class="row">
-	    		<div class="col-sm col-ac1 Actor">
-	    		<a href ="/actore">
-	    			<img src="/images/jenna.jpg">
-	    			<div class="negro">
-	      				<h1 class="Contenidoa"> Jenna Colleman </h1>
-	      			</div>
-	    			</div>
-	    		</a>
-	    		<div class="col-sm col-ac2 Actor">
-	    		<a href ="/actore">
-	    		<img src="/images/rebecca.jpg">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> Rebecca Ryan </h1>
-	    			</div>
-				</div>
-				</a>
-				<div class="col-sm col-ac3 Actor">
-				<a href ="/actore">
-				<img src="/images/david.jpg">
-					<div class="negro">
-	      				<h1 class="Contenidoa"> David Lascher </h1>
-	      			</div>
-	    		</div>
-	    		</a>
-	    		<div class="col-sm col-ac4 Actor">
-	    		<a href ="/actore">
-	    		<img src="/images/matt.jpg">
-	    			<div class="negro">
-	    				<h1 class="Contenidoa"> Matt Reeves </h1>
-	    			</div>
-				</div>
-				</a>
-				<div class="col-sm col-ac5 Actor">
-				<a href ="/actore">
-				<img src="/images/sally.jpg">
-					<div class="negro">
-	    				<h1 class="Contenidoa"> Sally Hawkins </h1>
-	    			</div>
-				</div>
-				</a>
-  			</div>
-      <hr>
-         
-         
+		<div class="col-md-8">
+		<h3 class="title-desc">Descripción</h3>
+		<p th:object="${serie}" th:text="*{descSerie}"></p>
+		<h3 class="title-desc">Actores</h1>
+		<div class="ulnost" th:each="Actores : ${serie.Actores}">
+		<img class="imgactorp" th:src="${Actores.imageActor}">
+		<li th:text="${Actores.nameActor}"></li>
+		</div>
+		</div>
+		<div class="container">
+		<h2 class="titlerese">Reseñas</h2>
+		<div th:each="resenaserie: ${listResenas}">
+		<hr>
+		<h6 th:text="${resenaserie.idus}"></h6>
+		<h6 th:text="*{resenaserie.textResenaSerie}"></h6>
+		</div>
+		<!-- Lista de Resenas -->
+		<h3 class="titleesc"><i class="fa fa-pen"></i> Escribe una Reseña<h3>
+		<hr>
+		</div>
+	</div>
+		 <form th:action="@{/resena-serie-{idSerie}(idSerie=${idSerie})}" th:object="${resenaserie}" method="post">
+                        <div class="form-group row">
+                            <textarea th:field="*{textResenaSerie}" class="form-control"
+                                    th:errorclass="'form-control alert-danger'"></textarea> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('textResenaSerie')}" th:errors="*{textResenaSerie}"></small>
+						
+						<input type="hidden" th:value="${serie.idSerie}" name="serie">
+						<input type="hidden" th:value="${usuario.id}" name="usuarioserie">
+						</div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="submit" value="Guardar" class="btn btn-secondary"></input>
+                                <a href="/seriesLista" class="btn btn-danger">Ver Todas las Series</a>
+                            </div>
+                            </div>
+                        <div class="block">
+                        <p th:text="${mensaje}" class="form-text text-danger"></p>
+                        </div>
+
+                    </form>
       </div> <!-- /container -->
 
     </main>
 
-    <footer class="footer">
+      <footer class="footer">
       <div class="container">
         <p>
-          &copy; 2020 PelisRate, Inc. | Todos los derechos reservados | Autor: Rodrigo Loayza | &middot; <a href="#">Privacy</a>
-          &middot; <a href="#">Terms</a>
+          &copy; 2020 PelisRate, Inc. | Todos los derechos reservados
         </p>
       </div>
     </footer>
@@ -194,6 +132,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
