@@ -105,6 +105,7 @@ public class UsuarioController {
 		// Creamos el Perfil que le asignaremos al usuario nuevo
 
 		userService.insert(user);
+		model.addAttribute("mensaje", "Se registró el usuario correctamente.");
 		model.addAttribute("users", userService.list());
 		return "administrador";
 	}
