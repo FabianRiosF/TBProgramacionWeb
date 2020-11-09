@@ -46,9 +46,7 @@ public class Pelicula implements Serializable {
 	private String descPelicula;
 	
 	@NotNull
-	@Past(message = "La fecha debe estar en el pasado")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "datePelicula")
 	private Date datePelicula;
 	
@@ -56,6 +54,7 @@ public class Pelicula implements Serializable {
 	private String imagePelicula;
 	
 	@ManyToMany
+	@NotEmpty(message = "Debe seleccionar al menos un actor")
 	@JoinTable (
 		name = "Actor_Pelicula",
 		joinColumns = @JoinColumn(name = "idPelicula", nullable = false),
