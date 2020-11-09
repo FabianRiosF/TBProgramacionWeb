@@ -64,7 +64,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
         <div class="card">
           <h4 class="card-header"><strong>Listado de Series</strong></h4>              
           <div class="card-body">
-            <a class="btn btn-primary" th:href="@{/series/add-serie}" title="Crear nueva Serie" role="button"><i class="fa fa-film" aria-hidden="true"></i> Nueva Serie</a>            
+		  <a class="btn btn-danger" th:href="@{/goadmin}" title="Regresar al panel" role="button"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Regresar al panel</a>
+		  <a class="btn btn-primary" th:href="@{/series/add-serie}" title="Crear nueva Serie" role="button"><i class="fa fa-film" aria-hidden="true"></i> Nueva Serie</a>            
             <hr>
           <table class="table table-striped">
 						<thead class="thead-dark">
