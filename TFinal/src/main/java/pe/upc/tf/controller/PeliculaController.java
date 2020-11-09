@@ -85,10 +85,10 @@ public class PeliculaController {
 	public String savePelicula(@Valid Pelicula pelicula, BindingResult result, Model model, SessionStatus status, @RequestParam("imagePelicula")MultipartFile multiPart)
 			throws Exception {
 		
-		if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("datePelicula") || result.hasFieldErrors("descPelicula")) {
+		if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("Actores") ||  result.hasFieldErrors("datePelicula") || result.hasFieldErrors("descPelicula")) {
 			model.addAttribute("listActores", aService.ListarActores());
 			return "pelicula/pelicula";
-		} 
+		}
 		else {
 			String nombreImagen = null;
 			if (!multiPart.isEmpty()) {
@@ -148,11 +148,10 @@ public class PeliculaController {
 	    @PostMapping("/update-{idPelicula}")
 	    public String updatePelicula(@PathVariable("idPelicula") Integer idPelicula, @Valid Pelicula pelicula, BindingResult result, Model model, @RequestParam("imagePelicula")MultipartFile multiPart){
 	     
-	        if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("datePelicula")|| result.hasFieldErrors("descPelicula")) {
-	        	pelicula.setIdPelicula(idPelicula);
-				model.addAttribute("listActores", aService.ListarActores());
-				return "update-pelicula";
-			} 
+	        if (result.hasFieldErrors("namePelicula") || result.hasFieldErrors("Actores") ||  result.hasFieldErrors("datePelicula") || result.hasFieldErrors("descPelicula")) {
+			model.addAttribute("listActores", aService.ListarActores());
+			return "pelicula/pelicula";
+		}
 	        else {
 	        	String nombreImagen = null;
 				if (!multiPart.isEmpty()) {
