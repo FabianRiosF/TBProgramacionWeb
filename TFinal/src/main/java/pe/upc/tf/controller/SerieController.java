@@ -69,7 +69,7 @@ public class SerieController{
 	public String saveSerie(@Valid Serie serie, BindingResult result, Model model, SessionStatus status, @RequestParam("imageSerie")MultipartFile multiPart)
 			throws Exception {
 		
-		if (result.hasFieldErrors("nameSerie") || result.hasFieldErrors("dateSerie")) {
+		if (result.hasFieldErrors("nameSerie") || result.hasFieldErrors("Actores") ||  result.hasFieldErrors("dateSerie") || result.hasFieldErrors("descSerie)) {
 			model.addAttribute("listActores", aService.ListarActores());
 			return "serie/serie";
 		} 
@@ -132,10 +132,10 @@ public class SerieController{
 	    @PostMapping("/update-{idSerie}")
 	    public String updateSerie(@PathVariable("idSerie") Integer idSerie, @Valid Serie serie, BindingResult result, Model model, @RequestParam("imageSerie")MultipartFile multiPart){
 		     
-	        if (result.hasFieldErrors("nameSerie") || result.hasFieldErrors("dateSerie")) {
-				model.addAttribute("listActores", aService.ListarActores());
-				return "update-pelicula";
-			} 
+	        if (result.hasFieldErrors("nameSerie") || result.hasFieldErrors("Actores") ||  result.hasFieldErrors("dateSerie") || result.hasFieldErrors("descSerie)) {
+			model.addAttribute("listActores", aService.ListarActores());
+			return "serie/serie";
+		} 
 	        else {
 	        	String nombreImagen = null;
 				if (!multiPart.isEmpty()) {
