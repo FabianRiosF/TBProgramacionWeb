@@ -94,6 +94,9 @@
 									<option th:each="Actores : ${listActores}"
 										th:value="${Actores.idActor}" th:utext="${Actores.nameActor}" />
 								</select>
+								<small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('Actores')}" th:errors="*{Actores}"></small>
 							</div>
 						</div>
 						
