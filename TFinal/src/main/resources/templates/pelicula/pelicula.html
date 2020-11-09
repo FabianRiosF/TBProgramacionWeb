@@ -89,11 +89,14 @@
                         	<div class="form-group row">
 							<label for="color" class="col-sm-2 col-form-label">Actores:</label>
 							<div class="col-sm-6">
-								<select multiple class="custom-select custom-select-sm"
+								<select multiple class="custom-select custom-select-sm" 
 									th:field="*{Actores}">
 									<option th:each="Actores : ${listActores}"
 										th:value="${Actores.idActor}" th:utext="${Actores.nameActor}" />
 								</select>
+								<small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('Actores')}" th:errors="*{Actores}"></small>
 							</div>
 						</div>
 						
