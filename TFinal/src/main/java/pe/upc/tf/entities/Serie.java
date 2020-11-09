@@ -41,9 +41,7 @@ public class Serie implements Serializable {
 	private String nameSerie;
 	
 	@NotNull
-	@Past(message = "La fecha debe estar en el pasado")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dateSerie")
 	private Date dateSerie;
 	
@@ -55,6 +53,7 @@ public class Serie implements Serializable {
 	private String descSerie;
 	
 	@ManyToMany
+	@NotEmpty(message = "Debe seleccionar al menos un actor")
 	@JoinTable (
 		name = "Actor_Serie",
 		joinColumns = @JoinColumn(name = "idSerie", nullable = false),
